@@ -1,2 +1,47 @@
-/* Note: All the styles can be moved to App.css since they're already there */
-/* This file can be empty or deleted if you're using App.css */
+.filter-section {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.filter-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.logout-button {
+    position: sticky;
+    top: 20px;
+    right: 0;
+    z-index: 100;
+}
+
+.filter-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+    }
+
+    .logout-button {
+        position: static;
+        align-self: flex-end;
+    }
+}

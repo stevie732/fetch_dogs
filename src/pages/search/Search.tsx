@@ -28,7 +28,6 @@ import SearchLocationT from "../../types/searchLocation";
 import logImg from "../../assets/imgs/logo.svg";
 import Footer from "../../components/Footer/Footer";
 
-import "./Search.css";
 
 const { Meta } = Card;
 const { Option } = Select;
@@ -473,87 +472,89 @@ const Search: React.FC = () => {
         <div className="search-page">
             <ErrorNotification />
             <div className="filter-section">
-                <div className="filter-content">
-                    <div className="filter-item">
-                        <span>Breeds: </span> &nbsp;
-                        <Select
-                            className="select-breeds"
-                            mode="multiple"
-                            placeholder="Select items"
-                            value={selectedBreeds}
-                            onChange={handleBreedsChange}
-                        >
-                            {breeds.map(breed => {
-                                return (
-                                    <Option value={breed} key={breed}>{breed}</Option>
-                                )
-                            })}
-                        </Select>
+                <div className="filter-container">
+                    <div className="filter-content">
+                        <div className="filter-item">
+                            <span>Breeds: </span> &nbsp;
+                            <Select
+                                className="select-breeds"
+                                mode="multiple"
+                                placeholder="Select items"
+                                value={selectedBreeds}
+                                onChange={handleBreedsChange}
+                            >
+                                {breeds.map(breed => {
+                                    return (
+                                        <Option value={breed} key={breed}>{breed}</Option>
+                                    )
+                                })}
+                            </Select>
+                        </div>
+                        <div className="filter-item">
+                            <span>Min Age: </span> &nbsp;
+                            <Slider
+                                className="age-slider"
+                                range
+                                min={0}
+                                max={30}
+                                value={[ageMin, ageMax]}
+                                onChange={(value) => {
+                                    setAgeMin(value[0]);
+                                    setAgeMax(value[1]);
+                                }}
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <span>Sort Field: </span>
+                            &nbsp;
+                            <Select
+                                className="select-sort"
+                                placeholder="Select Sort Field"
+                                value={sortField}
+                                onChange={(value: string) => setSortField(value)}
+                            >
+                                <Option value="breed">Breed</Option>
+                                <Option value="name">Name</Option>
+                                <Option value="age">Age</Option>
+                            </Select>
+                        </div>
+                        <div className="filter-item">
+                            <span>Sort Direction: </span>
+                            &nbsp;
+                            <Select
+                                className="select-sort"
+                                placeholder="Select Sort Direction"
+                                value={sortDirection}
+                                onChange={(value: string) => setSortDirection(value)}
+                            >
+                                <Option value="asc">Ascending</Option>
+                                <Option value="desc">Descending</Option>
+                            </Select>
+                        </div>
+                        <div className="filter-item">
+                            <Button type="primary" onClick={() => setIsShowLocationModal(true)}>
+                                Filter By ZipCodes(Locations)
+                            </Button>
+                        </div>
+                        <div className="filter-item">
+                            <Button type="primary" onClick={match}>
+                                Match
+                            </Button>
+                        </div>
+                        <div className="filter-item">
+                            <Button type="primary" onClick={() => setIsShowFavoritesModal(true)}>
+                                Favorites
+                            </Button>
+                        </div>
+                        <div className="filter-item">
+                            <Button type="primary" onClick={reset}>
+                                Reset
+                            </Button>
+                        </div>
                     </div>
-                    <div className="filter-item">
-                        <span>Min Age: </span> &nbsp;
-                        <Slider
-                            className="age-slider"
-                            range
-                            min={0}
-                            max={30}
-                            value={[ageMin, ageMax]}
-                            onChange={(value) => {
-                                setAgeMin(value[0]);
-                                setAgeMax(value[1]);
-                            }}
-                        />
+                    <div className="filter-logo">
+                        <img src={logImg} alt="logo" />
                     </div>
-                    <div className="filter-item">
-                        <span>Sort Field: </span>
-                        &nbsp;
-                        <Select
-                            className="select-sort"
-                            placeholder="Select Sort Field"
-                            value={sortField}
-                            onChange={(value: string) => setSortField(value)}
-                        >
-                            <Option value="breed">Breed</Option>
-                            <Option value="name">Name</Option>
-                            <Option value="age">Age</Option>
-                        </Select>
-                    </div>
-                    <div className="filter-item">
-                        <span>Sort Direction: </span>
-                        &nbsp;
-                        <Select
-                            className="select-sort"
-                            placeholder="Select Sort Direction"
-                            value={sortDirection}
-                            onChange={(value: string) => setSortDirection(value)}
-                        >
-                            <Option value="asc">Ascending</Option>
-                            <Option value="desc">Descending</Option>
-                        </Select>
-                    </div>
-                    <div className="filter-item">
-                        <Button type="primary" onClick={() => setIsShowLocationModal(true)}>
-                            Filter By ZipCodes(Locations)
-                        </Button>
-                    </div>
-                    <div className="filter-item">
-                        <Button type="primary" onClick={reset}>
-                            Reset
-                        </Button>
-                    </div>
-                    <div className="filter-item">
-                        <Button type="primary" onClick={match}>
-                            Match
-                        </Button>
-                    </div>
-                    <div className="filter-item">
-                        <Button type="primary" onClick={() => setIsShowFavoritesModal(true)}>
-                            Favorites
-                        </Button>
-                    </div>
-                </div>
-                <div className="filter-logo">
-                    <img src={logImg} alt="logo" />
                 </div>
                 <Button
                     type="primary"
